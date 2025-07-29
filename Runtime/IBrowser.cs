@@ -68,6 +68,12 @@ namespace TLab.WebView
         void SetIntentFilters(string[] intentFilters);
 
         /// <summary>
+        /// Register urls of whitelisted host names, if names are NULL or EMPTY => all hosts are allowed
+        /// </summary>
+        /// <param name="whitelistedHosts">Urls of whitelisted host names, eg. 'youtube.com' (suggested without 'www.')</param>
+        void SetWhitelistedHosts(string[] whitelistedHosts);
+
+        /// <summary>
         /// Get content's scroll position x
         /// </summary>
         /// <returns>Page content's current scroll position x</returns>

@@ -14,6 +14,7 @@ namespace TLab.WebView
 		[SerializeField] private Download.Option m_downloadOption;
 		[SerializeField] private EventCallback m_eventCallback;
 		[SerializeField] private string[] m_intentFilters;
+		[SerializeField] private string[] m_whitelistedHosts;
 
 		public string url => m_url;
 
@@ -58,6 +59,7 @@ namespace TLab.WebView
 			SetDownloadOption(m_downloadOption);
 
 			SetIntentFilters(m_intentFilters);
+			SetWhitelistedHosts(m_whitelistedHosts);
 
 			SetFps(m_fps);
 
@@ -111,6 +113,15 @@ namespace TLab.WebView
 
 #if UNITY_ANDROID && !UNITY_EDITOR || DEBUG
 			m_NativePlugin.Call(nameof(SetIntentFilters), filters);
+#endif
+		}
+
+		public void SetWhitelistedHosts(string[] whitelistedHosts)
+		{
+			m_whitelistedHosts = whitelistedHosts;
+
+#if UNITY_ANDROID && !UNITY_EDITOR || DEBUG
+			m_NativePlugin.Call(nameof(SetWhitelistedHosts), whitelistedHosts);
 #endif
 		}
 
